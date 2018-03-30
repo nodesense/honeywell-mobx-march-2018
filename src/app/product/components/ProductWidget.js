@@ -35,7 +35,7 @@ function ProductWidget(props) {
                         </Link>
                       
 
-                        <button onClick={() => props.cart.addItem(props.product)}>
+                        <button onClick={() => props.cartState.addItem(props.product)}>
                             +Cart
                         </button>
                     </footer>
@@ -54,4 +54,4 @@ ProductWidget.propTypes = {
     
 }
 
-export default  inject("cart") (observer(ProductWidget));
+export default  inject("cartState") (observer(ProductWidget));

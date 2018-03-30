@@ -4,7 +4,7 @@ import {observer, inject} from "mobx-react";
 
 import ProductWidget from "./ProductWidget";
 
-@inject("productState", "cart")
+@inject("productState", "cartState")
 @observer
 export default class ProductList extends React.Component {
 
@@ -16,7 +16,8 @@ export default class ProductList extends React.Component {
 
         let list= this.props.productState
              .products.map ( product => (
-                 <ProductWidget key={product.id} product={product}>
+                 <ProductWidget key={product.id} 
+                                product={product}>
                     {product.name}
                  </ProductWidget>
              ))
@@ -24,7 +25,7 @@ export default class ProductList extends React.Component {
         return (
              
             <div>
-                <h2>Cart Size [{this.props.cart.cartSize}] </h2>
+                <h2>Cart Size [{this.props.cartState.quantity}] </h2>
                 <div className="flex two">
                     {list}
                 </div>

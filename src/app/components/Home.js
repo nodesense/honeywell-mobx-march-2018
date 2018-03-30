@@ -3,7 +3,7 @@ import React from "react";
 import {Like} from "./Like";
 
 // only for learning to use mobx with react
-import {observable, autorun} from "mobx";
+import {observable, autorun, action} from "mobx";
 
 // observer uses autorun
 // observer uses disposor
@@ -29,10 +29,15 @@ export class Home extends React.Component {
 
     increment() {
          
+       let actionFn =  action(() => {
+            console.log("Home increment");
 
-        console.log("Home increment");
+            this.props.homeState.likes++;
+        });
 
-        this.props.homeState.likes++;
+        actionFn();
+
+        
 
     }
   

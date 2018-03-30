@@ -15,6 +15,9 @@ export default class Cart extends React.Component {
     empty = () => {
         //TODO
         this.props.cartState.empty();
+
+        // Busines logic
+         
     }
 
     render() {

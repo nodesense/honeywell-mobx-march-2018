@@ -15,19 +15,33 @@ import Routes from "./app/Routes";
 // through injection
 import {Provider} from "mobx-react";
 
+// Use Strict mode
+// ensure that changes happens only
+// in action method
+
+import {configure} from "mobx";
+configure({enforceActions: true});
+
+
 import homeState from "./app/state/HomeState";
 import cartState 
         from "./app/cart/state/CartState";
+
+import productState 
+        from "./app/product/state/ProductState"
 
 
  
 let store = {
     homeState: homeState,
-    cartState: cartState
+    cartState: cartState,
+    productState: productState
 }
+
 
 // we are sending store keys and values
 // to component chains
+// to inject 
 render(<Provider {...store} >
         <Routes />
 </Provider> ,

@@ -3,8 +3,7 @@ import React from "react"
 
 import ProductList from "./ProductList";
  
-import productState from "../ProductState";
-
+ 
 import restful from "../../core/Restful";
 
 restful.getJson = function() {
@@ -14,12 +13,17 @@ restful.getJson = function() {
         price: 100
     }])
 }
+
+let productState = {
+    products : []
+}
  
 describe ("Test Product list component ", () => {
 
     let  wrapper = null;
     beforeEach( (done)=> {
-        wrapper = mount(<ProductList productState={ProductList} cart={ {cartSize: 12} } />)
+        wrapper = mount(<ProductList productState={productState} 
+                                     cartState={ {quantity: 12} } />)
         done();
     })
 

@@ -1,6 +1,16 @@
 //Restful is simple class that wrap all fetch API
 //Reusable one
 //All methods returns promises
+
+
+//GET list of resource
+// GET /api/products
+// GET specific resource
+// GET /api/products/1344
+// POST to create new one
+// PUT to update existing one
+// DELETE to delete existing one
+
 class Restful {
     constructor() {
 

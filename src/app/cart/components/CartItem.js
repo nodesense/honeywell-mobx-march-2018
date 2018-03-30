@@ -24,6 +24,7 @@ export default class CartItem extends React.Component {
         })
     }
  
+ 
 
     render() {
            

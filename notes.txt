@@ -1,0 +1,34 @@
+
+
+mobx
+    observable
+        -ES 5 observable({name: .....})
+        ES Next @observable (Decorator)
+    autorun (watch/observing)
+    computed
+
+    State (homeState, cartState, ...)
+    store (Main.js) store = {homeState: homeState, ..}
+
+mobx-react
+    Provider  (provides states)
+    inject (pull state from provider, 
+            pass to component as props)
+    observer (subscription/autorun, 
+              calls render function
+              disposer)
+    
+FLUX Architecture
+ We enforce action keyword
+
+
+
+ ---
+
+ Presentation Layer (React)
+    React
+
+ Business Layer (Mobx)
+    Mobx State
+    Ajax
+    State change 

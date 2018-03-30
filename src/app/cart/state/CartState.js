@@ -1,6 +1,8 @@
 import {
         observable, 
-        computed
+        computed,
+        action, // strict mode,
+        reaction
         } from "mobx";
 
 class CartState {
@@ -11,6 +13,17 @@ class CartState {
                         ];
 
 
+
+    constructor() {
+        // reaction(monitored function
+                    //effect function)
+        
+        reaction( ()=> this.items.length,
+                  (itemsLength) => {
+                        console.log("Reaction ", itemsLength)
+                        
+                  });
+    }
 
     @computed get amount() {
         let total = 0;
@@ -32,18 +45,39 @@ class CartState {
     
     // item{id, name, price, qty}
 
-    addItem(item) {
-        // todo: 
+    @action
+    addItem(product) {
+        let index = this
+        .items
+        .findIndex ( item => item.id == product.id);
+
+        if (index >= 0) {
+            let item = this.items[index]; 
+            item.qty++;
+            return;
+        }
+       
+
+        let item = {
+            id: product.id,
+            name: product.name,
+            price: product.price,
+            qty: 1
+        }
         this.items.push(item);
     }
 
+     
+    // actions
+    @action
     removeItem(id) {
         let index = this
                     .items
                     .findIndex ( item => item.id == id);
         this.items.splice(index, 1);
     }
-
+ 
+    @action
     updateItem(id, qty) {
         let index = this
         .items
@@ -55,6 +89,7 @@ class CartState {
 
     }
 
+    @action
     empty() {
         this.items = [];
     }
