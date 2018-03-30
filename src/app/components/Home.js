@@ -2,14 +2,21 @@ import React from "react";
 
 import {Like} from "./Like";
 
+// throw away code
+// only for learning to use mobx with react
+import {observable, autorun} from "mobx";
+
+let homeState = observable({
+    likes: 1000
+});
+
+
 export class Home extends React.Component {
 
     constructor(props) {
         super(props);
 
-        this.state = {
-            likes: 1000
-        }
+       // stateless component
     }
 
     increment() {
@@ -17,15 +24,25 @@ export class Home extends React.Component {
 
         console.log("Home increment");
 
-        //calls render method
-        this.setState({
-            likes: this.state.likes + 1
-        })
+        homeState.likes++;
 
     }
+ 
+    componentDidMount() {
+        console.log("Home mount");
 
-    componentWillMount() {
-        //this.setState() //view is not ready,
+        this.disposer = autorun( () => {
+            console.log("autorun likes ", 
+                        homeState.likes);
+            //calls render method
+             
+            this.forceUpdate();
+        })
+    }
+
+    componentWillUnmount() {
+        console.log("Home unmount");
+        this.disposer();
     }
 
     render() {
@@ -33,11 +50,13 @@ export class Home extends React.Component {
 
         return (
             <div>
-                <h1>Home - {this.state.likes}</h1>
+                <h1>Home - {homeState.likes}</h1>
 
-                <Like likes={this.state.likes}
-                       onIncr = {() => this.increment()}
-                />
+                <button  
+                       onClick = {() => this.increment()}
+                >
+                 +1
+                </button>
             </div>
         )
     }

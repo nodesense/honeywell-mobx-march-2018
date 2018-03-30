@@ -10,7 +10,8 @@ import {render} from "react-dom";
 //app route configuration
 import Routes from "./app/Routes";
 
-import "./Basics";
+// import "./Basics";
+// import "./Learn";
 
 
 //import { useStrict } from "mobx";
