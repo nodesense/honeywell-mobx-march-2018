@@ -4,6 +4,8 @@ import {inject, observer} from "mobx-react";
 
 import CartList from "./CartList";
 
+@inject("cartState")
+@observer
 export default class Cart extends React.Component {
     
     componentDidMount() {
@@ -12,6 +14,7 @@ export default class Cart extends React.Component {
 
     empty = () => {
         //TODO
+        this.props.cartState.empty();
     }
 
     render() {

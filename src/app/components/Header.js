@@ -5,6 +5,8 @@ import {NavLink, withRouter} from "react-router-dom";
 import {inject, observer} from "mobx-react";
 
 @withRouter
+@inject("cartState", "homeState")
+@observer
 export class Header extends React.Component {
     
     constructor(props) {
@@ -34,6 +36,8 @@ export class Header extends React.Component {
 
     render() {
         
+        console.log("Header Render");
+        
         return (
             <div>
                 <h1> {this.props.title} </h1>
@@ -43,7 +47,7 @@ export class Header extends React.Component {
                          className="button"
                          activeClassName="success">
                          
-                        Home
+                        Home [{this.props.homeState.likes}]
                 </NavLink>
 
                  <NavLink to="/calc" 
@@ -60,7 +64,9 @@ export class Header extends React.Component {
                           
                          className="button"
                          activeClassName="success">
-                        Cart [ ] RS
+                        Cart [ {this.props.cartState.quantity} ] 
+                        RS  {this.props.cartState.amount} 
+                        {/* amount and quantity */}
                 </NavLink>
 
                 <NavLink to="/products" 

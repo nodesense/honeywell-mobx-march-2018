@@ -4,9 +4,14 @@ import {inject, observer} from "mobx-react";
 import CartItem from "./CartItem";
 
  function CartList(props) {
+
+    // cartState as props thorugh inject
+    let cartState = props.cartState;
   
     //TODO: 
-    let items = [];
+    //cartState.items is a observable
+    // any changes, this method called
+    let items = cartState.items;
     
     
 
@@ -33,10 +38,10 @@ import CartItem from "./CartItem";
 
                 <tr>
                     <td colSpan="2">
-                        <h4>Grand Total</h4>
+                        <h4>Grand Total {cartState.amount}</h4>
                     </td>
                     <td >
-                        <h4> items</h4>
+                        <h4> {cartState.quantity} items</h4>
                     </td>
                     <td colSpan="3">
                         <h4>Amount </h4>
@@ -50,7 +55,9 @@ import CartItem from "./CartItem";
 }
 
 //FIXME
-export default CartList;
+export default 
+        inject("cartState") 
+             (observer(CartList));
 
 // export default inject("cart") 
 //                  (observer(CartList)) 
