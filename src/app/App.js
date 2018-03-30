@@ -50,10 +50,14 @@ export class App extends Component {
 
         return (
             <div>
-                
-                {this.show && <Header title="React App"  />}
 
+                <Header />
+            
+        {/*                
+                {this.show && <Header title="React App"  />}
                 <Sum calculator={calculatorState} />
+        */}
+
                 {/*  view container
                 
                     children passed from route

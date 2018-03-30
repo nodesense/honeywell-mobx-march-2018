@@ -5,19 +5,19 @@ import {Like} from "./Like";
 // only for learning to use mobx with react
 import {observable, autorun} from "mobx";
 
+//FIXME: inject homeState into Home component
+// using provider
+import homeState from "../state/HomeState";
+
 // observer uses autorun
 // observer uses disposor
 // automatically subscribe and unsubscribe
 // calls render method
-import {observer, inject} from "mobx-react";
+import {observer} from "mobx-react";
 
 
 //ES.NEXT decorator
 
-// inject takes homeState from Provider (main.js)
-// pass to home component as props
-// this.props.homeState
-@inject("homeState")
 @observer
 export class Home extends React.Component {
 
@@ -32,7 +32,7 @@ export class Home extends React.Component {
 
         console.log("Home increment");
 
-        this.props.homeState.likes++;
+        homeState.likes++;
 
     }
   
@@ -42,15 +42,13 @@ export class Home extends React.Component {
 
         return (
             <div>
-                <h1>Home - {this.props.homeState.likes}</h1>
+                <h1>Home - {homeState.likes}</h1>
 
                 <button  
                        onClick = {() => this.increment()}
                 >
                  +1
                 </button>
-
-                <Like />
             </div>
         )
     }

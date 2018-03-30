@@ -4,6 +4,8 @@ import {inject, observer} from "mobx-react";
 
 import CartList from "./CartList";
 
+@inject("cart", "order")
+@observer
 export default class Cart extends React.Component {
     
     componentDidMount() {
@@ -11,7 +13,7 @@ export default class Cart extends React.Component {
     }
 
     empty = () => {
-        //TODO
+        this.props.cart.empty()
     }
 
     render() {
@@ -20,10 +22,7 @@ export default class Cart extends React.Component {
                 <button onClick={ this.empty } >
                     Empty
                 </button>
-
-                {/* todo */}
-
-              <h2>    Cart  - </h2>
+              <h2>    Cart  - {this.props.cart.cartSize} - {this.props.cart.amount} - {this.props.order.offer.discount}</h2>
             
                 <CartList />
             </div>

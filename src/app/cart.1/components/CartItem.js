@@ -1,18 +1,20 @@
 import React from "react";
 
 import {inject, observer} from "mobx-react";
- 
+
+@inject("cart")
+@observer
 export default class CartItem extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            qty: 0
+            qty: props.item.qty
         }
     }
 
     componentWillReceiveProps(nextProps) {
         this.setState({
-            qty: 0
+            qty: nextProps.item.qty
         })
     }
 
@@ -21,7 +23,14 @@ export default class CartItem extends React.Component {
             qty: parseInt(e.target.value) || 0
         })
     }
- 
+
+    removeItem = (id) => {
+        this.props.cart.removeItem(id);
+    }
+
+    updateItem = (id, qty) => {
+        this.props.cart.updateItem(id, qty);
+    }
 
     render() {
            
@@ -42,6 +51,9 @@ export default class CartItem extends React.Component {
                                 onChange={this.changeHandler}
                             />
                           
+
+                          Qty: {item.qty}
+
                           </td>
 
                     <td>
@@ -49,14 +61,14 @@ export default class CartItem extends React.Component {
                     </td>
                           
                     <td> 
-                        <button onClick={ ()=> {}} > 
+                        <button onClick={ ()=> this.updateItem(item.id, this.state.qty)} > 
                             Update
                         </button>
 
                     </td>
 
                     <td> 
-                        <button onClick={() => {} } > 
+                        <button onClick={() => this.removeItem(item.id)} > 
                             Delete
                         </button>
                     </td>

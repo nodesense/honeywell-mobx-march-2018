@@ -30,7 +30,7 @@ export default function Routes () {
                    exact
                         component={Home} />
  
-            <AuthRoute path="/cart"
+            <Route path="/cart"
                        component={Cart} />
 
             <Route path="/products"

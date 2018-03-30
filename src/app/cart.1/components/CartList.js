@@ -4,15 +4,17 @@ import {inject, observer} from "mobx-react";
 import CartItem from "./CartItem";
 
  function CartList(props) {
-  
-    //TODO: 
-    let items = [];
+   let {items, amount} = props.cart;
     
-    
+   let list = items.map ( item => (
+       <CartItem item={item}  
+                 key={item.id}
+        />
+   ))
 
     return (
         <div>
-            Cart List 
+            Cart List {props.cart.amount}
             <table >
                 <tbody>
                 <tr>
@@ -23,23 +25,18 @@ import CartItem from "./CartItem";
                     <th> Update </th>
                     <th> Delete </th>
                 </tr>
-                {
-                    items.map ( item => (
-                        <CartItem item={item}  
-                                    key={item.id}
-                            />
-                    ))
-                }
+
+                {list}
 
                 <tr>
                     <td colSpan="2">
                         <h4>Grand Total</h4>
                     </td>
                     <td >
-                        <h4> items</h4>
+                        <h4>{props.cart.quantity} items</h4>
                     </td>
                     <td colSpan="3">
-                        <h4>Amount </h4>
+                        <h4>{props.cart.amount}</h4>
                     </td>
                     
                 </tr>
@@ -49,8 +46,5 @@ import CartItem from "./CartItem";
     )
 }
 
-//FIXME
-export default CartList;
-
-// export default inject("cart") 
-//                  (observer(CartList)) 
+ export default inject("cart") 
+                 (observer(CartList)) 
