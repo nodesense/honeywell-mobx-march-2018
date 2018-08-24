@@ -12,8 +12,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "mobx": "^4.1.1",
-    "mobx-react": "^5.0.0",
+    "mobx": "^5.0.4",
+    "mobx-react": "^5.2.5",
     "prop-types": "^15.6.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",

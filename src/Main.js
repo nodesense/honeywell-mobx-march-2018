@@ -30,12 +30,14 @@ import cartState
 import productState 
         from "./app/product/state/ProductState"
 
+import authState 
+        from './app/auth/state/AuthState';
 
- 
 let store = {
     homeState: homeState,
     cartState: cartState,
-    productState: productState
+    productState: productState,
+    authState: authState
 }
 
 

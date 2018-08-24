@@ -57,8 +57,7 @@ export class Header extends React.Component {
                           
                          Calc
                  </NavLink>
- 
-
+  
 
                 <NavLink to="/cart" 
                           
@@ -75,6 +74,13 @@ export class Header extends React.Component {
                          activeClassName="success">
                         Products
                 </NavLink>
+
+                <NavLink to="/login" 
+                          className="button"
+                          activeClassName="success">
+                         Login
+                 </NavLink>
+  
  
                
 

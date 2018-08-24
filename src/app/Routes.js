@@ -53,11 +53,13 @@ export default function Routes () {
  
             <Route path="/cart"
                        component={LoadableCartComponent} />
-
-            <Route path="/products"
+ 
+            {/* <Route path="/products"
+                       component={ProductRoutes} /> */}
+ 
+            <AuthRoute path="/products"
                        component={ProductRoutes} />
-
-            
+                       
             <Route path="/calc"
                        component={Calc} />
 

@@ -4,15 +4,28 @@ import {
         action, // strict mode,
         reaction
         } from "mobx";
+ 
+export class CartItem {
+    @observable id = 0;
+    @observable name = "";
+    @observable price = 0;
+    @observable qty = 0;
+
+    constructor(id, name, price, qty) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.qty = qty;
+    }
+}
+
 
 class CartState {
     // items is observable, get, setter method
-    @observable items = [ {id: 1, name: 'Product 1', price: 100, qty: 1},
-                          {id: 2, name: 'Product 2', price: 200, qty: 2}  ,
-                          {id: 3, name: 'Product 3', price: 300, qty: 3} 
+    @observable items = [ new CartItem(1,'Product 1',  100, 1),
+                            new CartItem(2,'Product 2',  200, 2),
+                            new CartItem(3,'Product 3',  300, 3),
                         ];
-
-
 
     constructor() {
         // reaction(monitored function
@@ -58,12 +71,7 @@ class CartState {
         }
        
 
-        let item = {
-            id: product.id,
-            name: product.name,
-            price: product.price,
-            qty: 1
-        }
+        let item =  new CartItem(product.id,product.name,  product.price, 1);
         this.items.push(item);
     }
 
